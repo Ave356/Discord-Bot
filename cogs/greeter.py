@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class Greeting(commands.Cog):
+class Greeter(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -12,5 +12,4 @@ class Greeting(commands.Cog):
             await channel.send('Welcome {0.mention}.'.format(member))
 
 def setup(client):
-    client.add_cog(Greeting(client))
-
+    client.add_cog(Greeter(client))
