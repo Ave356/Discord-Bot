@@ -11,3 +11,6 @@ class Greeting(commands.Cog):
         if channel is not None:
             await channel.send('Welcome {0.mention}.'.format(member))
 
+def setup(client):
+    client.add_cog(Greeting(client))
+
