@@ -3,7 +3,7 @@ import os
 from discord.ext import commands
 
 client = commands.Bot(command_prefix = '!')
-TOKEN = 'NjQzMjgzNjY2MDQ2Mjg3OTAy.XplYiQ.MoJhAvFJvoyoH-G5HchHpBLueDE' # Place bot token here
+TOKEN = '' # Place bot token here
 
 @client.command()
 async def load(ctx, extension):
