@@ -7,7 +7,7 @@ import youtube_dl
 
 
 #TODO add music playing functionality
-# potentially this into a loadable cog
+# potentially turn this into a loadable cog
 
 
 TOKEN = '' # Place bot token here
