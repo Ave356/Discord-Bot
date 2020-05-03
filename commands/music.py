@@ -7,10 +7,12 @@ from discord.utils import get
 
 TOKEN = '' # Place bot token here
 
+
 bot = commands.Bot(command_prefix='!')
 
-#TODO Make music.py into a loadable cog
-# potentially turn this into a loadable cog
+# this has to be run separately from the __main__.py file for now in order to work
+# potentially turn this into a loadable cog instead
+
 
 @bot.command(pass_context=True, aliases=['join'])
 async def join_server(ctx):
@@ -46,17 +48,17 @@ async def leave_server(ctx):
 
 @bot.command(pass_context=True, aliases=['player'])
 async def play(ctx,url: str):
-    song_file= os.path.isfile("song.mp3")
+    audio_file= os.path.isfile("audio.mp3")
     try:
-        if song_file:
-            os.remove("song.mp3")
-            print("Removed song file")
+        if audio_file:
+            os.remove("audio.mp3")
+            print("Removed audio file")
     except PermissionError:
-        print("Cannot delete song file: it is being played")
-        await ctx.send("Error: Song playing")
+        print("Cannot delete audio file: it is being played")
+        await ctx.send("Error: audio playing")
         return
     
-    await ctx.send("Downloading song")
+    await ctx.send("Downloading audio")
     
     voice = get(bot.voice_clients, guild=ctx.guild)
     
@@ -77,9 +79,9 @@ async def play(ctx,url: str):
         if file.endswith(".mp3"):
             name = file
             print(f"Renamed the file: {file}")
-            os.rename(file, "song.mp3")
+            os.rename(file, "audio.mp3")
         
-    voice.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: print(f"{name} has finished playing"))
+    voice.play(discord.FFmpegPCMAudio("audio.mp3"), after=lambda e: print(f"{name} has finished playing"))
     voice.source = discord.PCMVolumeTransformer(voice.source)
     voice.source.volume = 0.07 # Keep below 0.07 or lower because it becomes too loud
 
