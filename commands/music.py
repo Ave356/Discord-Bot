@@ -10,8 +10,11 @@ TOKEN = '' # Place bot token here
 
 bot = commands.Bot(command_prefix='!')
 
+#TODO have the bot join a channel when '!play' is run instead of having to do '!join' then '!play'
+
 # this has to be run separately from the __main__.py file for now in order to work
 # potentially turn this into a loadable cog instead
+
 
 
 @bot.command(pass_context=True, aliases=['join'])
@@ -48,7 +51,7 @@ async def leave_server(ctx):
 
 @bot.command(pass_context=True, aliases=['player'])
 async def play(ctx,url: str):
-    audio_file= os.path.isfile("audio.mp3")
+    audio_file = os.path.isfile("audio.mp3")
     try:
         if audio_file:
             os.remove("audio.mp3")
@@ -58,16 +61,17 @@ async def play(ctx,url: str):
         await ctx.send("Error: audio playing")
         return
     
-    await ctx.send("Downloading audio")
+    await ctx.send("downloading audio")
     
     voice = get(bot.voice_clients, guild=ctx.guild)
     
     ydl_opts = {
         'format': 'bestaudio/best',
+        'call_home':'false',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
-            'preferredquality': '192', # default audio quality. Change depending on your setup. https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/YoutubeDL.py#L128-L278
+            'preferredquality': '192', # 192 is the default audio quality. Change depending on your setup. https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/YoutubeDL.py#L128-L278
         }],
     }
 
@@ -88,6 +92,27 @@ async def play(ctx,url: str):
     nname = name.rsplit("-", 2)
     await ctx.send(f"Playing: {nname[0]}")
     print("Playing\n")
+
+
+
+@bot.command(pass_context=True, aliases=['pausing'])
+async def pause(ctx):
+    if bot.voice_clients and voice.is_playing():
+        print('Paused')
+        voice.pause()
+        await ctx.send('Pausing')
+        
+
+
+
+
+@bot.command(pass_context=True, aliases=['resuming'])
+async def resume(ctx):
+    if bot.voice_clients and voice.is_paused():
+        print('Resuming')
+        voice.resume()
+        await ctx.send('Resuming')
+
 
 
 
