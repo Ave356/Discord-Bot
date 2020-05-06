@@ -7,9 +7,13 @@ from discord.utils import get
 
 
 bot = commands.Bot(command_prefix = '!')
-TOKEN = '' # Place bot token here
+TOKEN = 'NjQzMjgzNjY2MDQ2Mjg3OTAy.Xqo-Tg.tMYkLMciXGjsnq-cJMuTPeQQPZY' # Place bot token here
 
+#changelog: added '!stop' audio command, temporarily added audio playing functionality
+
+#TODO have the bot join a channel when '!play' is run instead of having to do '!join' then '!play'
 #TODO add error notfication that a cog was already loaded/unloaded
+
 
 @bot.command()
 async def load(ctx, extension):
@@ -28,8 +32,6 @@ for filename in os.listdir('./cogs'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
 
-
-
 @bot.command(pass_context=True, aliases=['join'])
 async def join_server(ctx):
     global voice
@@ -43,7 +45,6 @@ async def join_server(ctx):
         print(f'The bot has connect to {channel}\n')
 
     await ctx.send(f"Joined {channel}")
-
 
 
 @bot.command(pass_context=True, aliases=['leave'])
@@ -61,14 +62,6 @@ async def leave_server(ctx):
 
 
 
-
-
-
-# temp added music function from ./tests/music.py till it is turn into a cog
-
-
-#TODO have the bot join a channel when '!play' is run instead of having to do '!join' then '!play'
-#TODO add '!stop' command to stop the current song
 
 
 
@@ -126,15 +119,21 @@ async def pause(ctx):
         await ctx.send('Pausing')
         
 
-
-
-
 @bot.command(pass_context=True, aliases=['resuming'])
 async def resume(ctx):
     if bot.voice_clients and voice.is_paused():
         print('Resuming')
         voice.resume()
         await ctx.send('Resuming')
+
+
+@bot.command(pass_context=True, aliases=['stopping'])
+async def stop(ctx):
+    if bot.voice_clients and voice.is_playing or voice.is_playing():
+        print('Stopping')
+        voice.stop()
+        await ctx.send('Stopping')
+
 
 
 bot.run(TOKEN)
