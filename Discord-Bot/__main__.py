@@ -67,6 +67,8 @@ async def leave_server(ctx):
 # temp added music function from ./tests/music.py till it is turn into a cog
 
 
+#TODO have the bot join a channel when '!play' is run instead of having to do '!join' then '!play'
+#TODO add '!stop' command to stop the current song
 
 
 
