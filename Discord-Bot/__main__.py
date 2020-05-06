@@ -7,7 +7,7 @@ from discord.utils import get
 
 
 bot = commands.Bot(command_prefix = '!')
-TOKEN = 'NjQzMjgzNjY2MDQ2Mjg3OTAy.Xqo-Tg.tMYkLMciXGjsnq-cJMuTPeQQPZY' # Place bot token here
+TOKEN = '' # Place bot token here
 
 #changelog: added '!stop' audio command, temporarily added audio playing functionality
 
