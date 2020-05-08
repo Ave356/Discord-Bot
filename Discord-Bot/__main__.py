@@ -7,7 +7,7 @@ from discord.utils import get
 
 
 bot = commands.Bot(command_prefix = '!')
-TOKEN = 'NjQzMjgzNjY2MDQ2Mjg3OTAy.XrS82Q.Lx4pFjoHAo0gbKUoHTxYr_bvX54' # Place bot token here
+TOKEN = '' # Place bot token here
 
 #changelog: now joins when the '!play' command is run 
 
