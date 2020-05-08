@@ -7,11 +7,10 @@ from discord.utils import get
 
 
 bot = commands.Bot(command_prefix = '!')
-TOKEN = '' # Place bot token here
+TOKEN = 'NjQzMjgzNjY2MDQ2Mjg3OTAy.XrS82Q.Lx4pFjoHAo0gbKUoHTxYr_bvX54' # Place bot token here
 
-#changelog: added '!stop' audio command, temporarily added audio playing functionality
+#changelog: now joins when the '!play' command is run 
 
-#TODO have the bot join a channel when '!play' is run instead of having to do '!join' then '!play'
 #TODO add error notfication that a cog was already loaded/unloaded
 
 
@@ -67,6 +66,19 @@ async def leave_server(ctx):
 
 @bot.command(pass_context=True, aliases=['player'])
 async def play(ctx,url: str):
+    global voice
+    channel = ctx.message.author.voice.channel
+    voice = get(bot.voice_clients, guild=ctx.guild)
+
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
+        print(f'The bot has connect to {channel}\n')
+
+    await ctx.send(f"Joined {channel}")
+    
+    
     audio_file = os.path.isfile("audio.mp3")
     try:
         if audio_file:
