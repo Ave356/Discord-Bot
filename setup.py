@@ -16,5 +16,6 @@ setup(
         'discordbot.py==0.2.3a3',
         'youtube-dl==2020.5.8'
         'PyNaCl==1.3.0',
+        'discord.py[voice]',
     ],
 )
