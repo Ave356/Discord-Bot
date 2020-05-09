@@ -15,5 +15,5 @@ setup(
         'discord.py==1.3.3',
         'discordbot.py==0.2.3a3',
         'youtube-dl==2020.5.8'
-    ]
+    ],
 )
