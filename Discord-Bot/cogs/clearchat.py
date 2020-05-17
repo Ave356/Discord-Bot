@@ -2,6 +2,8 @@ import discord
 import random
 from discord.ext import commands
 
+# user needs admin permission in order to run this cog
+
 class Clear(commands.Cog):
     def __init__(self, client):
         self.client = client
