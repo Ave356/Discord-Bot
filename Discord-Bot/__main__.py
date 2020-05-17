@@ -9,18 +9,20 @@ from discord.utils import get
 bot = commands.Bot(command_prefix = '!')
 TOKEN = '' # Place bot token here
 
-#changelog: !stop command removes audio.mp3
+#changelog: loading and unloading cogs now requires admin permission
 
 #TODO add error notfication that a cog was already loaded/unloaded
 
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
     await ctx.send(f'extension "{extension}" loaded')
 
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
     await ctx.send(f'extension "{extension}" unloaded')
@@ -154,4 +156,3 @@ async def stop(ctx):
 
 
 bot.run(TOKEN)
-
