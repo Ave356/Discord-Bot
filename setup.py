@@ -27,6 +27,5 @@ setup(
         'youtube-dl',
         'PyNaCl',
         'discord.py[voice]',
-        'random',
     ],
 )
