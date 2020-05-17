@@ -1,21 +1,31 @@
 from setuptools import setup
 
+def readme():
+    with open('README.md') as f:
+        return f.read()
+
+
 setup(
     name='Discord-Bot',
     author="Ave356",
     author_email=".",
     url="https://github.com/Ave356/Discord-Bot",
-    version='0.1dev',
-    packages=['Discord-Bot',],
+    version='0.0.1',
+    packages=['Discord-Bot'],
     license='MIT License',
-    long_description=open('README').read(),
-    platforms="Platform agnostic",
+    long_description=readme(),
+    long_description_content_type='test/markdown',
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'Operating System :: OS Independent',
+        'License :: OSI Approved :: MIT License',
+    ],
     install_requires=[
-        'discord==1.0.1',
-        'discord.py==1.3.3',
-        'discordbot.py==0.2.3a3',
-        'youtube-dl==2020.5.8'
-        'PyNaCl==1.3.0',
+        'discord',
+        'discord.py',
+        'discordbot.py',
+        'youtube-dl',
+        'PyNaCl',
         'discord.py[voice]',
     ],
 )
