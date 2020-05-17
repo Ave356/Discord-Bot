@@ -9,7 +9,7 @@ from discord.utils import get
 bot = commands.Bot(command_prefix = '!')
 TOKEN = '' # Place bot token here
 
-#changelog: now joins when the '!play' command is run 
+#changelog: !stop command removes audio.mp3
 
 #TODO add error notfication that a cog was already loaded/unloaded
 
@@ -29,6 +29,11 @@ async def unload(ctx, extension):
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
+
+
+
+
+
 
 
 @bot.command(pass_context=True, aliases=['join'])
@@ -58,8 +63,6 @@ async def leave_server(ctx):
     else:
         print("Bot isn't in channel")
         await ctx.send("I am not in a channel")
-
-
 
 
 
@@ -145,7 +148,10 @@ async def stop(ctx):
         print('Stopping')
         voice.stop()
         await ctx.send('Stopping')
+        os.remove("audio.mp3")
+        print("audio.mp3 removed")
 
 
 
 bot.run(TOKEN)
+
