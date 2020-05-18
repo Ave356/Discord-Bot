@@ -7,9 +7,8 @@ from discord.utils import get
 
 
 bot = commands.Bot(command_prefix = '!')
-TOKEN = '' # Place bot token here
+TOKEN = open("token.txt", "r").readline() 
 
-#changelog: loading and unloading cogs now requires admin permission
 
 #TODO add error notfication that a cog was already loaded/unloaded
 
