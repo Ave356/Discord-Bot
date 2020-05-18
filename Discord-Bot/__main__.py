@@ -7,7 +7,7 @@ from discord.utils import get
 
 
 bot = commands.Bot(command_prefix = '!')
-TOKEN = open("token.txt", "r").readline() 
+TOKEN = open("place-token-here.txt", "r").readline() 
 
 
 #TODO add error notfication that a cog was already loaded/unloaded
