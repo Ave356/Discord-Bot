@@ -102,7 +102,12 @@ class AudioPlayer(commands.Cog):
                 await ctx.send('Resuming')
 
 
-
+         @client.command(pass_context=True)
+         async def stop(ctx):
+            if client.voice_clients and voice.is_playing():
+                print("Stopping")
+                voice.stop()
+                await ctx.send('Stopping')
 
 def setup(client):
     client.add_cog(AudioPlayer(client))
