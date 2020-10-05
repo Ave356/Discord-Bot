@@ -9,7 +9,7 @@ class Clear(commands.Cog):
         self.client = client
 
         @client.command(pass_context=True)
-        @commands.has_permissions(administrator=True)
+        @commands.has_permissions(manage_messages=True)
         async def clear(ctx, amount=5): # change amount depending on how many messages you want to be deleted
             await ctx.channel.purge(limit=amount)
 
