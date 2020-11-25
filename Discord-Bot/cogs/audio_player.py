@@ -76,7 +76,7 @@ class AudioPlayer(commands.Cog):
                 
             voice.play(discord.FFmpegPCMAudio("audio.mp3"), after=lambda e: print(f"{name} has finished playing"))
             voice.source = discord.PCMVolumeTransformer(voice.source)
-            voice.source.volume = 0.07 # Keep below 0.07 or lower because it becomes too loud
+            voice.source.volume = 0.3 # Keep below 0.3 or lower because it becomes too loud
 
             nname = name.rsplit("-", 2)
             await ctx.send(f"Playing: {nname[0]}")
