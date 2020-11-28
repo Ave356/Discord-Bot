@@ -51,7 +51,9 @@ class AudioPlayer(commands.Cog):
                 print(f"the bot has connected to {channel}\n")
 
             await ctx.send(f"joined {channel}")
-                        
+            
+            
+            
             audio_file = os.path.isfile("audio.mp3")
             try:
                 if audio_file:
