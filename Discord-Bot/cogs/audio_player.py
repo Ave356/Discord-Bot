@@ -40,6 +40,20 @@ class AudioPlayer(commands.Cog):
 
         @client.command(pass_context=True)
         async def play(ctx,url: str):
+            global voice 
+            channel = ctx.message.author.voice.channel
+            voice = get(client.voice_clients, guild=ctx.guild)
+
+            if voice and voice.is_connected():
+                await voice.move_to(channel)
+            else:
+                voice = await channel.connect()
+                print(f"the bot has connected to {channel}\n")
+
+            await ctx.send(f"joined {channel}")
+            
+            
+            
             audio_file = os.path.isfile("audio.mp3")
             try:
                 if audio_file:
@@ -76,7 +90,7 @@ class AudioPlayer(commands.Cog):
                 
             voice.play(discord.FFmpegPCMAudio("audio.mp3"), after=lambda e: print(f"{name} has finished playing"))
             voice.source = discord.PCMVolumeTransformer(voice.source)
-            voice.source.volume = 0.07 # Keep below 0.07 or lower because it becomes too loud
+            voice.source.volume = 0.3 # Keep below 0.3 or lower because it becomes too loud
 
             nname = name.rsplit("-", 2)
             await ctx.send(f"Playing: {nname[0]}")
@@ -102,7 +116,12 @@ class AudioPlayer(commands.Cog):
                 await ctx.send('Resuming')
 
 
-
+        @client.command(pass_context=True)
+        async def stop(ctx):
+            if client.voice_clients and voice.is_playing():
+                print("Stopping")
+                voice.stop()
+                await ctx.send('Stopping')
 
 def setup(client):
     client.add_cog(AudioPlayer(client))
