@@ -40,6 +40,18 @@ class AudioPlayer(commands.Cog):
 
         @client.command(pass_context=True)
         async def play(ctx,url: str):
+            global voice 
+            channel = ctx.message.author.voice.channel
+            voice = get(client.voice_clients, guild=ctx.guild)
+
+            if voice and voice.is_connected():
+                await voice.move_to(channel)
+            else:
+                voice = await channel.connect()
+                print(f"the bot has connected to {channel}\n")
+
+            await ctx.send(f"joined {channel}")
+                        
             audio_file = os.path.isfile("audio.mp3")
             try:
                 if audio_file:
