@@ -21,7 +21,6 @@ setup(
         'License :: OSI Approved :: MIT License',
     ],
     install_requires=[
-        'discord',
         'discord.py',
         'discordbot.py',
         'youtube-dl',
