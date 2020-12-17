@@ -70,6 +70,7 @@ class AudioPlayer(commands.Cog):
             
             ydl_opts = {
                 'format': 'bestaudio/best',
+                'external_downloader': 'aria2c',
                 'call_home':'false',
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
