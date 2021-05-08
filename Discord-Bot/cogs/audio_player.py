@@ -91,7 +91,7 @@ class AudioPlayer(commands.Cog):
                 
             voice.play(discord.FFmpegPCMAudio("audio.mp3"), after=lambda e: print(f"{name} has finished playing"))
             voice.source = discord.PCMVolumeTransformer(voice.source)
-            voice.source.volume = 0.3 # Keep below 0.3 or lower because it becomes too loud
+            voice.source.volume = 0.3 # Keep at 0.3 or lower else it becomes too loud
 
             nname = name.rsplit("-", 2)
             await ctx.send(f"Playing: {nname[0]}")
@@ -106,7 +106,7 @@ class AudioPlayer(commands.Cog):
                 voice.pause()
                 await ctx.send('Pausing')
             else:
-                print('Not currently playing anytthing')
+                print('Not currently playing anything')
 
 
         @client.command(pass_context=True)
